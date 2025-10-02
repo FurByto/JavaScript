@@ -1,32 +1,5 @@
 
-alert("Bienvenido a al primera entrega!")
-
-
-//DRY:  Dont repeat yourself
-
-/* Premisas de la entrega:
-
-Declarar variables, constantes y arrays
-
-Crear 3 o màs variables en js que generen interacción
-
-Agregar ciclos de iteración o condicionantes necesarios para que el proyecto funcione correctamente
-
-Integrar el uso de la consola JS y de los cuadros de diàlogo PROMPT, CONFIRM Y ALERT (al menos 1 vez cada uno)
-
-*/
-
-
-/*Armar inventario de items en almacen
-
-1)  Armar array con lista de items
-2)  Pedir carga de producto nuevo con prompt
-3)  Permitir consultar cantidad de algun item
-4) Utilizar funcion que sume el producto cargado o descargado
-
-*/
-
-//Armado de array inicial
+alert("Bienvenido a segunda entrega!")
 
 
 const idEmpleados = [
@@ -35,57 +8,6 @@ const idEmpleados = [
     {id:785695, empleado: "Facundo"},
 ]
 console.log(idEmpleados)
-//let idEmpleado= Number(prompt("Colocar id de empleado"));
-
-/*if(idEmpleados.includes(idEmpleado)){
-    alert("Bienvenido, eres parte del equipo!");
-}
-*/
-const idEmpleado = Number(prompt("Coloque su id"))
-
-console.log(idEmpleado)
-
-const idExiste = idEmpleados.some(objeto => objeto.id === idEmpleado);
-if(idExiste) {
-    console.log("Bienvenido");
-} else {
-    console.log("No eres parte del equipo");
-}
-
-let idEncontrado=false
-
-for(let i = 0 ; i<idEmpleados.length; i+1) {
-    if(idEmpleados[i] === idEmpleado) 
-        idEncontrado=true;
-        break;
-    }
-
-
-
-
-
-
-/*const empleadoEncontrado = idEmpleados.find(empleado => empleado.id === idEmpleado);
-console.log (typeof(empleadoEncontrado))
-
-
-while (empleadoEncontrado) {
-    console.log("Bienvenido " + empleadoEncontrado);
-    idEmpleado = Number(prompt("Coloque su id"))
-    }
-
-*/
-
-
-let Incluye = (idEmpleados.includes(idEmpleado))
-
-/*while(Incluye = false) {
-    alert("UD no es parte del equipo");
-    idEmpleado = Number(prompt("Coloque su id"));
-    console.log("El id " + idEmpleado + " no pertenece al equipo");
-    console.log(Incluye);
-}*/
-
 
 
 
@@ -97,57 +19,59 @@ const itemsActuales = [
 ]
 
 
-console.table ( itemsActuales)
 
 
-let productoBuscado = prompt("Ingrese el producto buscado")
+
+const btnTag = document.getElementById("boton_1");
+
+btnTag.addEventListener("click", () => {
+    console.log("click en el boton")
+    const divs = document.getElementsByTagName("div");
+    for (let div of divs){
+        div.style.backgroundColor= "grey"
+        div.style.textDecorationColor = "white"
+    }
+    
+})
+
+const btnTagEmpl = document.getElementById("boton_2");
+
+btnTagEmpl.addEventListener("click", ()=>{
+    console.log ( "Click en querer ver productos" );
+    console.log("-------------------------------------------------------");
+    
+    
+    const ID_buscado = Number(prompt ("Coloque su ID"));
+    console.log(ID_buscado);
+    
+    const esEmpleado = idEmpleados.includes({id : ID_buscado});
+    console.log ( esEmpleado)
+
+    console.table ( itemsActuales);  
+})
 
 
-const cantidadDeProducto1 = itemsActuales.find(item => item.nombre=== productoBuscado);
-console.log(cantidadDeProducto1)
+const btnTagAgregarProducto = document.getElementById("boton_3");
 
-let monto = prompt("Coloque monto a dolarizar")
-
-const tipoDeCambio = 1375
-
-function dolarizar (monto) {
-    return (monto / tipoDeCambio);
-}
-
-console.log("El monto en dólares es de " + dolarizar(monto));
-
-function sumarIva (monto) {
-    return (monto*1.21)
-}
-
-console.log("El monto en pesos con iva incluido es de " +sumarIva(monto))
-
-//const cantidadDeProducto = buscarCantidad(itemsActuales, productoBuscado);
-//console.log("La cantidad del producto es: " + cantidadDeProducto );
+btnTagAgregarProducto.addEventListener("click", ()=>{
+    console.log ( "Click en agregar un producto" );
+    console.log("-------------------------------------------------------");
+    
+    
+    const nuevoProducto = Number(prompt ("Colocar nombre de producto"));
+    console.log(nuevoProducto);
+    itemsActuales.push(nuevoProducto);
+    console.table(itemsActuales)
+})
 
 
-/*const cantidadDeProducto = buscarCantidad(itemsActuales, productoBuscado);
-console.log("La cantidad del item buscado es : ${cantidadDelProducto}");
-*/
- 
-/*
+const btnTagGuardar = document.getElementById("boton_4");
 
-Ver cómo hacer que traiga la cantidad del libro ingresado!!!
-
-
-let productoBuscado = prompt("Colocar nombre buscado")
-const productoEncontrado = itemsActuales.find(nombre = productoBuscado)
-
-let cantidadBuscada = productoBuscado.cantidad
-console.log(cantidadBuscada)*/
-
-//console.log(productoBuscado)
-//console.log(productoEncontrado)
-
-/*
-if (productoBuscado) {
-    console.log( "La cantidad de {productoBuscado} es de ${productoBuscado.cantidad}");
-} else{
-    console.log("Producto no encontrado");
-}
-*/
+btnTagGuardar.addEventListener("click", ()=>{
+    console.log ( "Click en guardar" );
+    console.log("-------------------------------------------------------");
+    
+    localStorage.setItem("productos", JSON.stringify(itemsActuales));
+    console.log("Lista guardada en Local Storage")
+    
+})

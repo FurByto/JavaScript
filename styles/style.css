@@ -1,0 +1,13 @@
+html{
+    font-size: 62.5%;
+    background-color: aqua;
+}
+
+h1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: larger
+}
+
+.boton{
+    background-color: rgb(134, 27, 138);
+}
